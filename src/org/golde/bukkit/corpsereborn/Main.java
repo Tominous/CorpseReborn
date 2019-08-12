@@ -60,18 +60,18 @@ public class Main extends JavaPlugin {
 		
 		//For this release, I am disabling WorldGuard until I can get support for it.
 		
-//		if(pm.getPlugin("WorldGuard") != null) {
-//			try {
-//				Util.info("Worldguard detected. Adding custom spawn flags");
-//				worldGuard = (WorldGuardPlugin)getServer().getPluginManager().getPlugin("WorldGuard");
-//				worldGuardListener = new WorldguardListener(worldGuard);
-//				isWorldGuardEnabled = true;
-//			}
-//			catch(Exception e) {
-//				Util.info("Only worldguard 6.2 or later can use flags! Disabling worldguard support!");
-//				isWorldGuardEnabled = false;
-//			}
-//		}
+		if(pm.getPlugin("WorldGuard") != null) {
+			try {
+				Util.info("Worldguard detected. Adding custom spawn flags");
+				worldGuard = (WorldGuardPlugin)getServer().getPluginManager().getPlugin("WorldGuard");
+				worldGuardListener = new WorldguardListener(worldGuard);
+				isWorldGuardEnabled = true;
+			}
+			catch(Exception e) {
+				Util.info("Only worldguard 6.2 or later can use flags! Disabling worldguard support!");
+				isWorldGuardEnabled = false;
+			}
+		}
 	}
 
 	@Override
@@ -103,7 +103,7 @@ public class Main extends JavaPlugin {
 				Util.cinfo("&e====================================================");
 			}
 
-			//saveDefaultConfig();
+			saveDefaultConfig();
 			ConfigData.checkConfigForMissingOptions();
 
 			loadCorpsesCreator();
@@ -176,12 +176,12 @@ public class Main extends JavaPlugin {
 					else {
 						Util.info("Looks like you changed server versions. I have made a backup of your corpses.yml just in case.");
 						Util.copyFiles(corpseSaveFile, new File(getDataFolder(), "corpses.yml.backup"));
-//						Util.info("Removing old corpses.yml because you updated your server!");
+						Util.info("Removing old corpses.yml because you updated your server!");
 						corpseConfig.set("VERSION", Main.serverVersion.name());
 						try {
 							corpseConfig.save(corpseSaveFile);
 						} catch (IOException e) {
-							//new ReportError(e);
+							new ReportError(e);
 							e.printStackTrace();
 						}
 					}
@@ -189,7 +189,7 @@ public class Main extends JavaPlugin {
 				}
 			}
 
-			//if(!isDev) {sendCoolDataToEric();}
+			if(!isDev) {sendCoolDataToEric();}
 
 
 
@@ -206,7 +206,7 @@ public class Main extends JavaPlugin {
 			try {
 				corpseSave.save(corpseSaveFile);
 			} catch (IOException e) {
-				//new ReportError(e);
+				new ReportError(e);
 				e.printStackTrace();
 			}
 		}
@@ -218,7 +218,7 @@ public class Main extends JavaPlugin {
 			}
 		}
 		catch(Exception ex){
-			//new ReportError(ex);
+			new ReportError(ex);
 			ex.printStackTrace();
 		}
 
@@ -329,13 +329,13 @@ public class Main extends JavaPlugin {
 
 				int responseCode = con.getResponseCode();
 				if(responseCode == 200) {
-					Util.info("Successfully sent stats!");
+					Util.info("Successfully sent statistics!");
 				}else {
-					Util.warning("Failed to send stats: Responce Code:" + responseCode);
+					Util.warning("Failed to send statistics: Responce Code:" + responseCode);
 				}
 
 			}catch(Exception e) {
-				Util.warning("Eric's server seems to be down. I can not send stats to it!");
+				Util.warning("Eric's server seems to be down. I can not send statistics to it!");
 			}
 
 	}
