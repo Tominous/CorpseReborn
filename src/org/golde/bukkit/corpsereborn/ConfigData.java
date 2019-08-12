@@ -39,7 +39,7 @@ public class ConfigData {
 	public static boolean shouldSaveCorpses(){return shouldSaveCorpses;}
 	public static boolean shouldRenderArmor() {return shouldRenderArmor;}
 	public static boolean shouldSendDataToEric(){return shouldSendDataToEric;}
-	public static String getInventoryName(Player p){return guiName.replaceAll("%corpse%", p.getName()).replaceAll("&", "ง");}
+	public static String getInventoryName(Player p){return guiName.replaceAll("%corpse%", p.getName()).replaceAll("&", "ยง");}
 	
 	@Deprecated
 	public static String getUsername(Player p, String overrideUsername){
@@ -48,7 +48,7 @@ public class ConfigData {
 	
 	public static String getUsername(String pUsername, String overrideUsername){
 		if(overrideUsername == null){
-			overrideUsername = username.replaceAll("%corpse%", pUsername).replaceAll("&", "ง");
+			overrideUsername = username.replaceAll("%corpse%", pUsername).replaceAll("&", "ยง");
 		}
 		
 		if(overrideUsername.length() > 16) {
@@ -60,7 +60,7 @@ public class ConfigData {
 		if(finishLootingMessage.equalsIgnoreCase("none")){
 			return null;
 		}
-		return finishLootingMessage.replaceAll("%corpse%", name).replaceAll("&", "ง");
+		return finishLootingMessage.replaceAll("%corpse%", name).replaceAll("&", "ยง");
 	}
 
 	public static boolean shouldDespawnAfterLoot(){
@@ -75,7 +75,7 @@ public class ConfigData {
 		FileConfiguration config = Main.getPlugin().getConfig();
 
 		if (! config.isSet("enable-update-checker")) {
-			//Main.getPlugin().getLogger().info("did not find enable-update-checker");
+			Main.getPlugin().getLogger().info("did not find enable-update-checker");
 			appendConfig("#Enable checking for new versions of the plugin?",
 					"enable-update-checker: true");
 		}
@@ -144,10 +144,10 @@ public class ConfigData {
 					"new-hitboxes: true");
 		}
 
-		if (! config.isSet("render-armor")) {
-			appendConfig("#Should we render player armor and items on the corpses?",
-					"#Set to false to not render player armor and items on the corpses",
-					"render-armor: true");
+		if (! config.isSet("render-armour")) {
+			appendConfig("#Should we render player armour and items on the corpses?",
+					"#Set to false to not render player armour and items on the corpses",
+					"render-armour: true");
 		}
 		
 		if (! config.isSet("save-corpses")) {
@@ -205,7 +205,7 @@ public class ConfigData {
 			finishLootingMessage = config.getString("finish-looting-message", "&bYou have finished looting %corpse%'s corpse.");
 			newHitbox = config.getBoolean("new-hitboxes", true);
 			checkForUpdate = config.getBoolean("enable-update-checker", true);
-			shouldRenderArmor = config.getBoolean("render-armor", true);
+			shouldRenderArmor = config.getBoolean("render-armour", true);
 			shouldSaveCorpses = config.getBoolean("save-corpses", true);
 			shouldSendDataToEric = config.getBoolean("send-data", true);
 
