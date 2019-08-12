@@ -41,10 +41,10 @@ public enum ServerType {
 			return TACO_SPIGOT;
 		}
 		
-		/*try{
+		try{
 			Class.forName("org.github.paperspigot.PaperSpigotConfig");
 			return PAPER_SPIGOT;
-		}catch (Exception e){}*/
+		}catch (Exception e){}
 		
 		try{
 			Class.forName("net.glowstone.GlowServer");
